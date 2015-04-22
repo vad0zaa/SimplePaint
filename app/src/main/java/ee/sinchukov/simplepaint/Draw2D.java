@@ -1,7 +1,9 @@
 package ee.sinchukov.simplepaint;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,6 +21,11 @@ public class Draw2D extends View {
 
     public Draw2D(Context context) {
         super(context);
+
+        // Выводим значок из ресурсов
+        Resources res = this.getResources();
+        mBitmap = BitmapFactory.decodeResource(res, R.drawable.cat_bottom_small);
+
     }
 
     @Override
@@ -39,14 +46,23 @@ public class Draw2D extends View {
 
         // Рисуем зеленый прямоугольник
         mPaint.setColor(Color.GREEN);
-        canvas.drawRect(100, 100, 400, 120, mPaint);
+        canvas.drawRect(130, 130, 400, 150, mPaint);
+
+        // Рисуем красный круг
+        mPaint.setAntiAlias(true);
+        mPaint.setColor(Color.RED);
+        canvas.drawCircle(230, 230, 45, mPaint);
+
+        // Рисуем синий прямоугольник
+        mPaint.setColor(Color.BLUE);
+        canvas.drawRect(300, 350, 500, 540, mPaint);
 
         // Рисуем текст
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
         mPaint.setTextSize(10);
-        canvas.drawText("Лужайка только для котов", 120, 120, mPaint);
+        canvas.drawText("Лужайка только для котов", 150, 150, mPaint);
 
         // Текст под углом
         int x = 50;
@@ -65,6 +81,8 @@ public class Draw2D extends View {
 // восстанавливаем холст
         canvas.restore();
 
+        // Выводим изображение
+        canvas.drawBitmap(mBitmap, 150, 10, mPaint);
 
 
 
